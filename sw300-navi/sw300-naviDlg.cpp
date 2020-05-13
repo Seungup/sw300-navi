@@ -56,9 +56,44 @@ Csw300naviDlg::Csw300naviDlg(CWnd* pParent /*=nullptr*/)
 	m_hIcon = AfxGetApp()->LoadIcon(IDR_MAINFRAME);
 }
 
+Csw300naviDlg::~Csw300naviDlg()
+{
+	for (auto lastFriend : friendList)
+	{
+		delete lastFriend;
+	}
+
+}
+
 void Csw300naviDlg::DoDataExchange(CDataExchange* pDX)
 {
 	CDialogEx::DoDataExchange(pDX);
+}
+
+void Csw300naviDlg::addFriend(string name, string IP)
+{
+	
+	friendList.push_back(new Friend(name, IP));
+
+}
+
+Friend* Csw300naviDlg::searchFriend(string name)
+{
+	for (auto tempFriend : friendList)
+	{
+		if (tempFriend->getName().compare(name) == 0)
+			return tempFriend;
+	}
+	return nullptr;
+}
+
+void Csw300naviDlg::deleteFreind(string name)
+{
+
+}
+
+void Csw300naviDlg::addChatDialog()
+{
 }
 
 BEGIN_MESSAGE_MAP(Csw300naviDlg, CDialogEx)
