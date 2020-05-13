@@ -1,5 +1,12 @@
 # sw300 네비웍스 사내 메신저
 ----
+1. Project name : DM
+2. Event Diagram : 이선영님
+3. UserAction Diagram : 노승업님
+4. Dialoig Diagram : 김남태님
+5. Variables : 이정욱님
+
+----
 
 # 1. 메인 다이얼로그
 ## 담당자 : 
