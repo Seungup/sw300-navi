@@ -69,6 +69,7 @@ BEGIN_MESSAGE_MAP(CSocketClientDlg, CDialogEx)
 	ON_WM_QUERYDRAGICON()
 	ON_BN_CLICKED(IDC_BUTTON1, &CSocketClientDlg::OnBnClickedButton1)
 	ON_BN_CLICKED(IDC_BUTTON2, &CSocketClientDlg::OnBnClickedButton2)
+	ON_WM_TIMER()
 END_MESSAGE_MAP()
 
 
@@ -209,8 +210,37 @@ void CSocketClientDlg::OnBnClickedButton2()
 	dialog1.DoModal();
 }
 
+//void CSocketClientDlg::OnTimer(UINT_PTR nIDEvent)
+//{
+//	if (checknew == 1)
+//	{
+//		// 추가한 개수를 얻어옴
+//		int line = m_List.GetCount();
+//		// 얻어온 개수로 스크롤
+//		m_List.SetTopIndex(line - 1);
+//		checknew = 0;
+//	}
+//
+//	CDialogEx::OnTimer(nIDEvent);
+//}
+
+BOOL CSocketClientDlg::PreTranslateMessage(MSG* pMsg)
+{
+	if (pMsg->message == WM_KEYDOWN)
+	{
+		if (pMsg->wParam == VK_RETURN)
+		{
+			OnBnClickedButton1();
+			return true;
+		}
+	}
+	return CDialogEx::PreTranslateMessage(pMsg);
+}
+
+
 void CSocketClientDlg::OnTimer(UINT_PTR nIDEvent)
 {
+	// TODO: 여기에 메시지 처리기 코드를 추가 및/또는 기본값을 호출합니다.
 	if (checknew == 1)
 	{
 		// 추가한 개수를 얻어옴
@@ -219,19 +249,5 @@ void CSocketClientDlg::OnTimer(UINT_PTR nIDEvent)
 		m_List.SetTopIndex(line - 1);
 		checknew = 0;
 	}
-
 	CDialogEx::OnTimer(nIDEvent);
-}
-
-BOOL CSocketClientDlg::PreTranslateMessage(MSG* pMsg)
-{
-	if (pMsg->message == WM_KEYDOWN)
-	{
-		if (pMsg->message == VK_RETURN)
-		{
-			OnBnClickedButton1();
-			return true;
-		}
-	}
-	return CDialogEx::PreTranslateMessage(pMsg);
 }

@@ -42,6 +42,6 @@ public:
 	CString name;
 	int checknew;
 	afx_msg void OnBnClickedButton2();
-	void OnTimer(UINT_PTR nIDEvent);
 	BOOL PreTranslateMessage(MSG* pMsg);
+	afx_msg void OnTimer(UINT_PTR nIDEvent);
 };
