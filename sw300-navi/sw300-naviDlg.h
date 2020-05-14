@@ -5,6 +5,7 @@
 #pragma once
 #include "Friend.h"
 #include "CListenSocket.h"
+#include "CClientSocket.h"
 using namespace std;
 
 
@@ -49,6 +50,8 @@ public: // 통신관련 작성 소켓(server)
 	CListenSocket m_ListenSocket;
 	CListBox* clientList; //대화방 참가인원 표시료 변경)
 	CListBox m_List;	// 메시지 리스트 변수
+	//CConnectSocket m_Socket;
 	void OnDestroy();
+
 
 };

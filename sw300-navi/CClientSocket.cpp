@@ -10,21 +10,21 @@ CClientSocket::~CClientSocket()
 {
 }
 
-void CClientSocket::setListenSocket(CAsyncSocket* pSocket)
+void CClientSocket::SetListenSocket(CAsyncSocket* pSocket)
 {
 	m_pListenSocket = pSocket;
 }
 
-void CClientSocket::onClose(int nErrorCode)
+void CClientSocket::OnClose(int nErrorCode)
 {
 	CSocket::OnClose(nErrorCode);
 
 	CListenSocket* pServerSocket = (CListenSocket*)m_pListenSocket;
-	pServerSocket->closeClientSocket(this);
+	pServerSocket->CloseClientSocket(this);
 
 }
 
-void CClientSocket::onReceive(int nErrorCode)
+void CClientSocket::OnReceive(int nErrorCode)
 {
 	CString strTmp = _T(""), strIPAddress = _T("");
 	UINT uPortNumber = 0;
@@ -45,7 +45,7 @@ void CClientSocket::onReceive(int nErrorCode)
 
 		CListenSocket* pServerSocket = (CListenSocket*)m_pListenSocket;
 		// 다른 클라이언트들에게 메시지 전달
-		pServerSocket->sendAllMessage(strBuffer);
+		pServerSocket->SendAllMessage(strBuffer);
 	}
 
 	CSocket::OnReceive(nErrorCode);

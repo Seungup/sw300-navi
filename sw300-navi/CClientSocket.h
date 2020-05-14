@@ -9,9 +9,9 @@ public:
 	CClientSocket();
 	virtual ~CClientSocket();
 
-	void setListenSocket(CAsyncSocket* pSocket);
-	void onClose(int nErrorCode);
-	void onReceive(int nErrorCode);
+	void SetListenSocket(CAsyncSocket* pSocket);
+	void OnClose(int nErrorCode);
+	void OnReceive(int nErrorCode);
 
 	CAsyncSocket* m_pListenSocket;
 };

@@ -101,7 +101,7 @@ BEGIN_MESSAGE_MAP(Csw300naviDlg, CDialogEx)
 	ON_WM_PAINT()
 	ON_WM_QUERYDRAGICON()
 	ON_LBN_SELCHANGE(IDC_LIST1, &Csw300naviDlg::OnLbnSelchangeList1)
-	ON_BN_CLICKED(IDC_BUTTON1, &Csw300naviDlg::OnBnClickedButton1)
+	//ON_BN_CLICKED(IDC_BUTT, &Csw300naviDlg::OnBnClickedButton1)
 	ON_BN_CLICKED(IDC_CreateRoom, &Csw300naviDlg::OnBnClickedCreateroom)
 END_MESSAGE_MAP()
 
@@ -111,6 +111,8 @@ END_MESSAGE_MAP()
 BOOL Csw300naviDlg::OnInitDialog()
 {
 	CDialogEx::OnInitDialog();
+
+	//clientList = (CListBox*)GetDlgItem(IDC_CLIENT_LIST);
 
 	// 시스템 메뉴에 "정보..." 메뉴 항목을 추가합니다.
 
@@ -138,6 +140,19 @@ BOOL Csw300naviDlg::OnInitDialog()
 	SetIcon(m_hIcon, FALSE);		// 작은 아이콘을 설정합니다.
 
 	// TODO: 여기에 추가 초기화 작업을 추가합니다.
+	if (m_ListenSocket.Create(21000, SOCK_STREAM))	// (포트, 데이터전송타입 TCP)
+	{
+		if (!m_ListenSocket.Listen())
+		{
+			AfxMessageBox(_T("ERROR : Listen() return False"));
+		}
+	}
+
+	else
+	{
+		AfxMessageBox(_T("ERROR : Failed to create server socket!"));	//
+	}
+
 
 	return TRUE;  // 포커스를 컨트롤에 설정하지 않으면 TRUE를 반환합니다.
 }
@@ -210,4 +225,38 @@ void Csw300naviDlg::OnBnClickedCreateroom()
 {
 	// TODO: 여기에 컨트롤 알림 처리기 코드를 추가합니다.
 	// add server logic
+	if (m_ListenSocket.Create(21000, SOCK_STREAM))	// (포트, 데이터전송타입 TCP)
+	{
+		if (!m_ListenSocket.Listen())
+		{
+			AfxMessageBox(_T("ERROR : Listen() return False"));
+		}
+	}
+
+}
+
+void Csw300naviDlg::OnDestroy()
+{
+	CDialog::OnDestroy();
+
+	POSITION pos;
+
+	pos = m_ListenSocket.m_ptrClientSocketList.GetHeadPosition();
+	CClientSocket* pClient = NULL;
+
+	// 생성되어있는 클라이언트 소켓이 없을 때까지 체크하여 소켓닫기
+	while (pos != NULL)
+	{
+		pClient = (CClientSocket*)m_ListenSocket.m_ptrClientSocketList.GetNext(pos);
+		if (pClient != NULL)
+		{
+			pClient->ShutDown();
+			pClient->Close();
+
+			delete pClient;
+		}
+	}
+	m_ListenSocket.ShutDown();
+	m_ListenSocket.Close();
+
 }

@@ -23,4 +23,6 @@ protected:
 public:
 	afx_msg void OnBnClickedButton1();
 	BOOL PreTranslateMessage(MSG* pMsg);
+	afx_msg void OnEnChangeEdit2();
+	afx_msg void OnBnClickedButton3();
 };

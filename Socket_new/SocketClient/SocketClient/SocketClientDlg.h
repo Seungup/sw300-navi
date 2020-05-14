@@ -15,6 +15,7 @@ public:
 
 	// CConnectSocket 객체
 	CConnectSocket m_Socket;
+	CString connetIP;
 
 // 대화 상자 데이터입니다.
 #ifdef AFX_DESIGN_TIME

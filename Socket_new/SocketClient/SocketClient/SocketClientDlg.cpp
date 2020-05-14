@@ -113,8 +113,10 @@ BOOL CSocketClientDlg::OnInitDialog()
 
 	// 서버 접속
 	// TEST 내 컴퓨터에 접속 ip 127.0.0.1
+
+
 	m_Socket.Create();
-	if (m_Socket.Connect(_T("127.0.0.1"), 21000) == FALSE)
+	if (m_Socket.Connect(connetIP, 21000) == FALSE)
 	{
 		AfxMessageBox(_T("ERROR : Failed to connect Server"));
 		PostQuitMessage(0);

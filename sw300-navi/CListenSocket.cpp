@@ -11,7 +11,7 @@ CListenSocket::~CListenSocket()
 {
 }
 
-void CListenSocket::onAccept(int nErrorCode)
+void CListenSocket::OnAccept(int nErrorCode)
 {
 	CClientSocket* pClient = new CClientSocket;
 	CString str;
@@ -19,7 +19,7 @@ void CListenSocket::onAccept(int nErrorCode)
 	// 클라이언트 접속 요청이 오면 서버-클라이언트를 연결시켜준다
 	if (Accept(*pClient))
 	{
-		pClient->setListenSocket(this);
+		pClient->SetListenSocket(this);
 		// 리스트에 클라이언트 소켓 저장
 		m_ptrClientSocketList.AddTail(pClient);
 
@@ -39,7 +39,7 @@ void CListenSocket::onAccept(int nErrorCode)
 	CAsyncSocket::OnAccept(nErrorCode);
 }
 
-void CListenSocket::closeClientSocket(CSocket* pClient)
+void CListenSocket::CloseClientSocket(CSocket* pClient)
 {
 	POSITION pos;
 	pos = m_ptrClientSocketList.Find(pClient);
@@ -80,7 +80,7 @@ void CListenSocket::closeClientSocket(CSocket* pClient)
 	}
 }
 
-void CListenSocket::sendAllMessage(TCHAR* pszMessage)
+void CListenSocket::SendAllMessage(TCHAR* pszMessage)
 {
 	POSITION pos;
 	pos = m_ptrClientSocketList.GetHeadPosition();
