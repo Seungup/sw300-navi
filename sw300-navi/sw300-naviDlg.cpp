@@ -100,6 +100,9 @@ BEGIN_MESSAGE_MAP(Csw300naviDlg, CDialogEx)
 	ON_WM_SYSCOMMAND()
 	ON_WM_PAINT()
 	ON_WM_QUERYDRAGICON()
+	ON_LBN_SELCHANGE(IDC_LIST1, &Csw300naviDlg::OnLbnSelchangeList1)
+	ON_BN_CLICKED(IDC_BUTTON1, &Csw300naviDlg::OnBnClickedButton1)
+	ON_BN_CLICKED(IDC_CreateRoom, &Csw300naviDlg::OnBnClickedCreateroom)
 END_MESSAGE_MAP()
 
 
@@ -188,3 +191,23 @@ HCURSOR Csw300naviDlg::OnQueryDragIcon()
 	return static_cast<HCURSOR>(m_hIcon);
 }
 
+
+
+void Csw300naviDlg::OnLbnSelchangeList1()
+{
+
+
+}
+
+
+void Csw300naviDlg::OnBnClickedButton1()
+{
+	// TODO: 여기에 컨트롤 알림 처리기 코드를 추가합니다.
+}
+
+
+void Csw300naviDlg::OnBnClickedCreateroom()
+{
+	// TODO: 여기에 컨트롤 알림 처리기 코드를 추가합니다.
+	// add server logic
+}

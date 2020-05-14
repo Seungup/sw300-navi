@@ -36,6 +36,12 @@
     <ClInclude Include="Friend.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="CListenSocket.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="CClientSocket.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="sw300-navi.cpp">
@@ -48,6 +54,12 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="Friend.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="CListenSocket.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="CClientSocket.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>

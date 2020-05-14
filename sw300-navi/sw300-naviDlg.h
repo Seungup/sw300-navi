@@ -4,6 +4,7 @@
 
 #pragma once
 #include "Friend.h"
+#include "CListenSocket.h"
 using namespace std;
 
 
@@ -40,4 +41,13 @@ protected:
 	afx_msg void OnPaint();
 	afx_msg HCURSOR OnQueryDragIcon();
 	DECLARE_MESSAGE_MAP()
+public:
+	afx_msg void OnLbnSelchangeList1();
+	afx_msg void OnBnClickedButton1();
+	afx_msg void OnBnClickedCreateroom();
+public: // 통신관련 작성 소켓(server)
+	CListenSocket m_ListenSocket;
+	CListBox* clientList; //대화방 참가인원 표시료 변경)
+	void OnDestroy();
+
 };
