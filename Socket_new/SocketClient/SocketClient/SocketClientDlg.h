@@ -4,6 +4,9 @@
 
 #pragma once
 #include"CConnectSocket.h"
+#include <vector>
+#include <string>
+using namespace std;
 
 // CSocketClientDlg 대화 상자
 class CSocketClientDlg : public CDialogEx
@@ -46,4 +49,7 @@ public:
 	CListBox m_List2;
 	afx_msg BOOL OnEraseBkgnd(CDC* pDC);
 	afx_msg void OnLbnSelchangeList2();
+	afx_msg void OnBnClickedButton4();
+
+	vector <string> converList;
 };

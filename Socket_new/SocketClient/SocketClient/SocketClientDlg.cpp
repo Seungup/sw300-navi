@@ -8,6 +8,8 @@
 #include "SocketClientDlg.h"
 #include "afxdialogex.h"
 #include "CAlias.h"
+#include <vector>
+#include <fstream>
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -73,6 +75,7 @@ BEGIN_MESSAGE_MAP(CSocketClientDlg, CDialogEx)
 	ON_WM_TIMER()
 	ON_WM_ERASEBKGND()
 	ON_LBN_SELCHANGE(IDC_LIST2, &CSocketClientDlg::OnLbnSelchangeList2)
+	ON_BN_CLICKED(IDC_BUTTON4, &CSocketClientDlg::OnBnClickedButton4)
 END_MESSAGE_MAP()
 
 
@@ -268,4 +271,27 @@ BOOL CSocketClientDlg::OnEraseBkgnd(CDC* pDC)
 
 void CSocketClientDlg::OnLbnSelchangeList2()
 {
+}
+
+
+void CSocketClientDlg::OnBnClickedButton4()
+{
+	// TODO: 여기에 컨트롤 알림 처리기 코드를 추가합니다.
+	fstream iofile;
+	iofile.open("conversation.txt", ios_base::binary | ios_base::out);
+
+	if (iofile.is_open())	// txt 파일 열렸다면
+	{
+		CSocketClientDlg* pMain = (CSocketClientDlg*)AfxGetMainWnd();
+
+		for (auto string : pMain->converList)
+		{
+			iofile << string << endl;
+		}
+		iofile.close();
+	}
+	else        // txt 파일 열리지 않으면 
+	{
+		AfxMessageBox(_T("Couldn't open file"));
+	}
 }

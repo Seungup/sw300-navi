@@ -86,6 +86,9 @@ void CConnectSocket::OnReceive(int nErrorCode)
 		}
 		//pMain->m_List.InsertString(cnt, originText);
 
+		string a = CT2CA(originText);
+		pMain->converList.push_back(a);
+
 		pMain->checknew = 1;
 
 
