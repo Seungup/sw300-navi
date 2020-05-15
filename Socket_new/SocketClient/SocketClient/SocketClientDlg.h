@@ -44,4 +44,5 @@ public:
 	afx_msg void OnBnClickedButton2();
 	BOOL PreTranslateMessage(MSG* pMsg);
 	afx_msg void OnTimer(UINT_PTR nIDEvent);
+	CListBox m_List2;
 };

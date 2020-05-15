@@ -52,6 +52,8 @@ void CConnectSocket::OnReceive(int nErrorCode)
 		// 메시지를 받고
 		CSocketClientDlg* pMain = (CSocketClientDlg*)AfxGetMainWnd();
 		int cnt = pMain->m_List.GetCount();
+		int cnt2 = pMain->m_List2.GetCount();
+		//int cnt2 = pMain->m_List2.GetCount();
 		CString originText = szBuffer;
 
 		CString RecName = pMain->name;
@@ -60,13 +62,17 @@ void CConnectSocket::OnReceive(int nErrorCode)
 		if (originText.Find(RecName) != -1)
 		{
 			// 메시지 발신자가 자신이면
-			originText = L"(나)" + originText;	// 메시지 앞에 '나' 추가
+			//originText = L"나" + originText;	// 메시지 앞에 '나' 추가
+			pMain->m_List2.InsertString(cnt2, originText);
+			pMain->m_List.InsertString(cnt, L"\r\n");
 		}
 		else
 		{
-			originText = L"  " + originText;	// 아니면 앞에 공백 처리
+			//originText = L"  " + originText;	// 아니면 앞에 공백 처리
+			pMain->m_List.InsertString(cnt, originText);
+			pMain->m_List2.InsertString(cnt2, L"\r\n");
 		}
-		pMain->m_List.InsertString(cnt, originText);
+		//pMain->m_List.InsertString(cnt, originText);
 
 		pMain->checknew = 1;
 

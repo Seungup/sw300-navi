@@ -61,6 +61,7 @@ void CSocketClientDlg::DoDataExchange(CDataExchange* pDX)
 {
 	CDialogEx::DoDataExchange(pDX);
 	DDX_Control(pDX, IDC_LIST1, m_List);
+	DDX_Control(pDX, IDC_LIST2, m_List2);
 }
 
 BEGIN_MESSAGE_MAP(CSocketClientDlg, CDialogEx)
@@ -245,8 +246,10 @@ void CSocketClientDlg::OnTimer(UINT_PTR nIDEvent)
 	{
 		// 추가한 개수를 얻어옴
 		int line = m_List.GetCount();
+		int line2 = m_List2.GetCount();
 		// 얻어온 개수로 스크롤
 		m_List.SetTopIndex(line - 1);
+		m_List2.SetTopIndex(line2 - 1);
 		checknew = 0;
 	}
 	CDialogEx::OnTimer(nIDEvent);
