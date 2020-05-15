@@ -88,6 +88,9 @@ void CClientSocket::OnReceive(int nErrorCode)	// 소켓에 데이터가 들어�
 		// 이름 설정하는 신호였다면
 		if (strTmp.Find(L"alias:") != -1)
 		{
+			// alias[index][0] = port
+			// alias[index][1] = nickname
+
 			alias[index][0] = portStr;	// 이름 저장
 			CString temp = strBuffer;
 			temp.Delete(0, 6);

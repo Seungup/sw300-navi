@@ -71,6 +71,8 @@ BEGIN_MESSAGE_MAP(CSocketClientDlg, CDialogEx)
 	ON_BN_CLICKED(IDC_BUTTON1, &CSocketClientDlg::OnBnClickedButton1)
 	ON_BN_CLICKED(IDC_BUTTON2, &CSocketClientDlg::OnBnClickedButton2)
 	ON_WM_TIMER()
+	ON_WM_ERASEBKGND()
+	ON_LBN_SELCHANGE(IDC_LIST2, &CSocketClientDlg::OnLbnSelchangeList2)
 END_MESSAGE_MAP()
 
 
@@ -105,11 +107,6 @@ BOOL CSocketClientDlg::OnInitDialog()
 	SetIcon(m_hIcon, TRUE);			// 큰 아이콘을 설정합니다.
 	SetIcon(m_hIcon, FALSE);		// 작은 아이콘을 설정합니다.
 
-	// TODO: 여기에 추가 초기화 작업을 추가합니다.
-	CButton* button1 = (CButton*)GetDlgItem(IDOK);
-	CButton* button2 = (CButton*)GetDlgItem(IDCANCEL);
-	button1->DestroyWindow();
-	button2->DestroyWindow();
 
 	SetTimer(1, 100, NULL);
 
@@ -253,4 +250,22 @@ void CSocketClientDlg::OnTimer(UINT_PTR nIDEvent)
 		checknew = 0;
 	}
 	CDialogEx::OnTimer(nIDEvent);
+}
+
+
+BOOL CSocketClientDlg::OnEraseBkgnd(CDC* pDC)
+{
+	CRect winRC;
+	GetClientRect(winRC);
+
+	CBrush bkBrush(RGB(255, 255, 255));
+	CBrush* pOldBrush = pDC->SelectObject(&bkBrush);
+	pDC->Rectangle(winRC);
+	pDC->SelectObject(pOldBrush);
+
+	return TRUE;
+}
+
+void CSocketClientDlg::OnLbnSelchangeList2()
+{
 }

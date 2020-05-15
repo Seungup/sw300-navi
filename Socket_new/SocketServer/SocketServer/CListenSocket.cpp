@@ -103,7 +103,10 @@ void CListenSocket::SendAllMessage(TCHAR* pszMessage)
 			int checkLenOfData = pClient->Send(pszMessage, lstrlen(pszMessage) * 2);
 			if (checkLenOfData != lstrlen(pszMessage) * 2)
 			{
-				AfxMessageBox(_T("일부 데이터가 정상적으로 전송되지 못했습니다!"));
+				// 해당 함수가 확인버튼을 누르기 전까지 데이터를 다시 보내지 못하게 하므로, 주석처리 하였습니다.
+				// AfxMessageBox(_T("일부 데이터가 정상적으로 전송되지 못했습니다!"));
+				// 대신 다시한번 메시지를 보냅니다.
+				pClient = (CClientSocket*)m_ptrClientSocketList.GetNext(pos);
 			}
 		}
 	}

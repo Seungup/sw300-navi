@@ -16,7 +16,7 @@ CAlias::CAlias(CWnd* pParent /*=nullptr*/)
 	: CDialogEx(IDD_DIALOG1, pParent)
 	, medit1(_T("127.0.0.1"))
 {
-
+	SetDlgItemText(IDC_STATIC_TEXT, L"서버와 연결되어있지 않습니다.");
 }
 
 CAlias::~CAlias()
@@ -36,6 +36,7 @@ BEGIN_MESSAGE_MAP(CAlias, CDialogEx)
 	ON_BN_CLICKED(IDC_BUTTON1, &CAlias::OnBnClickedButton1)
 	ON_EN_CHANGE(IDC_EDIT2, &CAlias::OnEnChangeEdit2)
 	ON_BN_CLICKED(IDC_BUTTON3, &CAlias::OnBnClickedButton3)
+	ON_STN_CLICKED(IDC_STATIC_TEXT, &CAlias::OnStnClickedStaticText)
 END_MESSAGE_MAP()
 
 
@@ -100,13 +101,23 @@ void CAlias::OnBnClickedButton3()
 	((CSocketClientDlg*)GetParent())->connetIP = str;
 	
 	((CSocketClientDlg*)GetParent())->m_Socket.Create();
+	SetDlgItemText(IDC_STATIC_TEXT, L"서버의 응답을 기다리는 중..");
 	if( ((CSocketClientDlg*)GetParent())->m_Socket.Connect(str, 21000) == FALSE)
 	{
-		AfxMessageBox(_T("ERROR : Failed to connect Server"));
-		PostQuitMessage(0);
+		SetDlgItemText(IDC_STATIC_TEXT, L"서버와 연결할 수 없습니다.");
+		//해당 메소드로 인하여 프로그램이 종료되는 일이 없도록 변경하였습니다.
+		//PostQuitMessage(0);
 		//return FALSE;
 	}
+	// 실패시 무조건 버튼이 비활성화되는 현상을 수정하였습니다.
+	else {
+		SetDlgItemText(IDC_STATIC_TEXT, L"서버와 연결되었습니다.");
+		IPConfigButton.EnableWindow(FALSE);
+	}
+}
 
-	IPConfigButton.EnableWindow(FALSE);
 
+void CAlias::OnStnClickedStaticText()
+{
+	// TODO: 여기에 컨트롤 알림 처리기 코드를 추가합니다.
 }

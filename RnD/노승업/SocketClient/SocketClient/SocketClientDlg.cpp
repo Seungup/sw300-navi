@@ -55,18 +55,6 @@ CSocketClientDlg::CSocketClientDlg(CWnd* pParent /*=nullptr*/)
 	: CDialogEx(IDD_SOCKETCLIENT_DIALOG, pParent)
 {
 	m_hIcon = AfxGetApp()->LoadIcon(IDR_MAINFRAME);
-
-	DWORD dwRemove = 0;
-	DWORD dwAdd = LBS_USETABSTOPS;
-
-	m_List.SubclassDlgItem(IDC_LIST1, this);
-	m_List.ModifyStyle(dwRemove, dwAdd);
-	m_List.ResetContent();
-
-	m_List2.SubclassDlgItem(IDC_LIST2, this);
-	m_List2.ModifyStyle(dwRemove, dwAdd);
-	m_List2.ResetContent();
-	checknew = 0;
 }
 
 void CSocketClientDlg::DoDataExchange(CDataExchange* pDX)
@@ -83,10 +71,6 @@ BEGIN_MESSAGE_MAP(CSocketClientDlg, CDialogEx)
 	ON_BN_CLICKED(IDC_BUTTON1, &CSocketClientDlg::OnBnClickedButton1)
 	ON_BN_CLICKED(IDC_BUTTON2, &CSocketClientDlg::OnBnClickedButton2)
 	ON_WM_TIMER()
-	ON_WM_ERASEBKGND()
-	ON_WM_CTLCOLOR()
-	ON_BN_CLICKED(IDOK, &CSocketClientDlg::OnBnClickedOk)
-	ON_LBN_SELCHANGE(IDC_LIST2, &CSocketClientDlg::OnLbnSelchangeList2)
 END_MESSAGE_MAP()
 
 
@@ -122,6 +106,10 @@ BOOL CSocketClientDlg::OnInitDialog()
 	SetIcon(m_hIcon, FALSE);		// 작은 아이콘을 설정합니다.
 
 	// TODO: 여기에 추가 초기화 작업을 추가합니다.
+	CButton* button1 = (CButton*)GetDlgItem(IDOK);
+	CButton* button2 = (CButton*)GetDlgItem(IDCANCEL);
+	button1->DestroyWindow();
+	button2->DestroyWindow();
 
 	SetTimer(1, 100, NULL);
 
@@ -265,46 +253,4 @@ void CSocketClientDlg::OnTimer(UINT_PTR nIDEvent)
 		checknew = 0;
 	}
 	CDialogEx::OnTimer(nIDEvent);
-}
-
-
-BOOL CSocketClientDlg::OnEraseBkgnd(CDC* pDC)
-{
-	// TODO: 여기에 메시지 처리기 코드를 추가 및/또는 기본값을 호출합니다.
-	CRect rect;
-	GetClientRect(&rect);
-	CBrush myBrush(RGB(255, 255, 255));
-
-	CBrush* pOld = pDC->SelectObject(&myBrush);
-	BOOL bRes = pDC->PatBlt(0, 0, rect.Width(), rect.Height(), PATCOPY);
-	pDC->SelectObject(pOld);
-
-	return bRes; //CDialogEx::OnEraseBkgnd(pDC);
-}
-
-
-HBRUSH CSocketClientDlg::OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor)
-{
-	HBRUSH hbr = CDialogEx::OnCtlColor(pDC, pWnd, nCtlColor);
-
-	// TODO:  여기서 DC의 특성을 변경합니다.
-	if (nCtlColor == CTLCOLOR_STATIC)
-	{
-		pDC->SetBkColor(RGB(255, 255, 255));
-	}
-	// TODO:  기본값이 적당하지 않으면 다른 브러시를 반환합니다.
-	return hbr;
-}
-
-
-void CSocketClientDlg::OnBnClickedOk()
-{
-	// TODO: 여기에 컨트롤 알림 처리기 코드를 추가합니다.
-	CDialogEx::OnOK();
-}
-
-
-void CSocketClientDlg::OnLbnSelchangeList2()
-{
-	// TODO: 여기에 컨트롤 알림 처리기 코드를 추가합니다.
 }

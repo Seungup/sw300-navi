@@ -10,6 +10,7 @@
 
 CConnectSocket::CConnectSocket()
 {
+	
 }
 
 CConnectSocket::~CConnectSocket()
@@ -61,15 +62,26 @@ void CConnectSocket::OnReceive(int nErrorCode)
 
 		if (originText.Find(RecName) != -1)
 		{
-			// 메시지 발신자가 자신이면
-			//originText = L"나" + originText;	// 메시지 앞에 '나' 추가
-			pMain->m_List2.InsertString(cnt2, originText);
+			// 메시지 발신자가 자신이면 메시지 버퍼만 가져오기
+			CString SendMsg = originText;
+			SendMsg.Delete(0, pMain->name.GetLength() + 3);
+			SendMsg += " : 나";
+			pMain->m_List2.InsertString(cnt2, SendMsg);
 			pMain->m_List.InsertString(cnt, L"\r\n");
 		}
 		else
 		{
 			//originText = L"  " + originText;	// 아니면 앞에 공백 처리
-			pMain->m_List.InsertString(cnt, originText);
+			CString RcivMsg = originText;
+			int MsgStartPos = RcivMsg.Find(']');
+			RcivMsg.Delete(0, MsgStartPos + 1);
+
+			CString FromWho = originText;
+			FromWho.Delete(MsgStartPos, FromWho.GetLength());
+			FromWho.Delete(0, 1);
+			FromWho += "님 ";
+
+			pMain->m_List.InsertString(cnt, (LPCTSTR)(FromWho + RcivMsg));
 			pMain->m_List2.InsertString(cnt2, L"\r\n");
 		}
 		//pMain->m_List.InsertString(cnt, originText);

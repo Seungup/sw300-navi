@@ -5,7 +5,6 @@
 #pragma once
 #include"CConnectSocket.h"
 
-
 // CSocketClientDlg 대화 상자
 class CSocketClientDlg : public CDialogEx
 {
@@ -45,4 +44,6 @@ public:
 	BOOL PreTranslateMessage(MSG* pMsg);
 	afx_msg void OnTimer(UINT_PTR nIDEvent);
 	CListBox m_List2;
+	afx_msg BOOL OnEraseBkgnd(CDC* pDC);
+	afx_msg void OnLbnSelchangeList2();
 };

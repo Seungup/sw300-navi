@@ -28,4 +28,5 @@ public:
 	CString medit1;
 	CEdit mEditButton;
 	CButton IPConfigButton;
+	afx_msg void OnStnClickedStaticText();
 };
