@@ -1,6 +1,5 @@
 ﻿#pragma once
 
-#include <time.h>
 
 // CAlias 대화 상자
 
@@ -28,5 +27,5 @@ public:
 	afx_msg void OnBnClickedButton3();
 	CString medit1;
 	CEdit mEditButton;
-	afx_msg void OnEnChangeEdit1();
+	CButton IPConfigButton;
 };
