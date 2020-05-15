@@ -25,4 +25,6 @@ public:
 	BOOL PreTranslateMessage(MSG* pMsg);
 	afx_msg void OnEnChangeEdit2();
 	afx_msg void OnBnClickedButton3();
+	CString medit1;
+	CEdit mEditButton;
 };

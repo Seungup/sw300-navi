@@ -14,6 +14,7 @@ IMPLEMENT_DYNAMIC(CAlias, CDialogEx)
 
 CAlias::CAlias(CWnd* pParent /*=nullptr*/)
 	: CDialogEx(IDD_DIALOG1, pParent)
+	, medit1(_T("127.0.0.1"))
 {
 
 }
@@ -25,6 +26,8 @@ CAlias::~CAlias()
 void CAlias::DoDataExchange(CDataExchange* pDX)
 {
 	CDialogEx::DoDataExchange(pDX);
+	DDX_Text(pDX, IDC_EDIT2, medit1);
+	DDX_Control(pDX, IDC_EDIT2, mEditButton);
 }
 
 
@@ -95,4 +98,12 @@ void CAlias::OnBnClickedButton3()
 	//IP 저장
 	((CSocketClientDlg*)GetParent())->connetIP = str;
 	
+	((CSocketClientDlg*)GetParent())->m_Socket.Create();
+	if( ((CSocketClientDlg*)GetParent())->m_Socket.Connect(str, 21000) == FALSE)
+	{
+		AfxMessageBox(_T("ERROR : Failed to connect Server"));
+		PostQuitMessage(0);
+		//return FALSE;
+	}
+
 }

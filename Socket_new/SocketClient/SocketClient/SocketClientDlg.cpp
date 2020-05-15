@@ -117,16 +117,16 @@ BOOL CSocketClientDlg::OnInitDialog()
 	// TEST 내 컴퓨터에 접속 ip 127.0.0.1
 
 
-	m_Socket.Create();
-	if (m_Socket.Connect(connetIP, 21000) == FALSE)
-	{
-		AfxMessageBox(_T("ERROR : Failed to connect Server"));
-		PostQuitMessage(0);
-		return FALSE;
-	}
-
 	CAlias dialog1 = new CAlias();
 	dialog1.DoModal();
+
+	
+
+	//SetDlgItemText(IDC_EDIT2, L"127.0.0.1");
+	//dialog1.mEditButton.SetWindowTextW(L"127.0.0.1");
+	//dialog1.mEditButton.SetDlgItemTextW(0,L"127.0.0.1");
+
+	//dialog1.mEditButton.SetDlgItemTextW(1, L"127.0.0.1");
 
 	return TRUE;  // 포커스를 컨트롤에 설정하지 않으면 TRUE를 반환합니다.
 }
