@@ -9,6 +9,7 @@ public:
 	CConnectSocket();
 	virtual ~CConnectSocket();
 
+public:
 	// 프로그램 종료 시 소켓을 끔
 	void OnClose(int nErrorCode);
 	// 받은 메시지를 메시지창에 출력

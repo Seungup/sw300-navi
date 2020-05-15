@@ -29,6 +29,7 @@ void CConnectSocket::OnClose(int nErrorCode)
 	::PostQuitMessage(0);
 }
 
+// 소켓에 데이터가 들어왔을 때
 void CConnectSocket::OnReceive(int nErrorCode)
 {
 	TCHAR szBuffer[1024];
@@ -57,14 +58,12 @@ void CConnectSocket::OnReceive(int nErrorCode)
 
 		CString RecName = pMain->name;
 		RecName = L"[" + RecName + L"]:";
-		CString RcivMsg = originText;
-		RcivMsg.Delete(0, RecName.GetLength() + 3);
 
 		if (originText.Find(RecName) != -1)
 		{
 			// 메시지 발신자가 자신이면
 			//originText = L"나" + originText;	// 메시지 앞에 '나' 추가
-			pMain->m_List2.InsertString(cnt2, RcivMsg);
+			pMain->m_List2.InsertString(cnt2, originText);
 			pMain->m_List.InsertString(cnt, L"\r\n");
 		}
 		else
@@ -81,4 +80,6 @@ void CConnectSocket::OnReceive(int nErrorCode)
 	}
 	CSocket::OnReceive(nErrorCode);
 }
+
+
 
