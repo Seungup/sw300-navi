@@ -27,4 +27,5 @@ public:
 	afx_msg void OnBnClickedButton3();
 	CString medit1;
 	CEdit mEditButton;
+	CButton IPConfigButton;
 };

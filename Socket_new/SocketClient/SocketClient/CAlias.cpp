@@ -28,6 +28,7 @@ void CAlias::DoDataExchange(CDataExchange* pDX)
 	CDialogEx::DoDataExchange(pDX);
 	DDX_Text(pDX, IDC_EDIT2, medit1);
 	DDX_Control(pDX, IDC_EDIT2, mEditButton);
+	DDX_Control(pDX, IDC_BUTTON3, IPConfigButton);
 }
 
 
@@ -105,5 +106,7 @@ void CAlias::OnBnClickedButton3()
 		PostQuitMessage(0);
 		//return FALSE;
 	}
+
+	IPConfigButton.EnableWindow(FALSE);
 
 }
